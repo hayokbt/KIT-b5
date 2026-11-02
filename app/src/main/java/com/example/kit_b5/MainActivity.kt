@@ -16,7 +16,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kit_b5.data.DataStore.*
 import com.example.kit_b5.ui.onboarding.*
-import com.example.kit_b5.ui.SavedInformationScreen
+import com.example.kit_b5.ui.MainScreen
 import com.example.kit_b5.ui.SavedInformationViewModel
 import com.example.kit_b5.ui.theme.KITB5Theme
 
@@ -54,7 +54,7 @@ private fun OnboardingHost(repository: OnboardingRepository) {
             val model: SavedInformationViewModel = viewModel(
                 factory = onboardingFactory { SavedInformationViewModel(repository) }
             )
-            SavedInformationScreen(model)
+            MainScreen(model, repository)
         }
         else -> {
             BackHandler(enabled = step > 0) { step-- }
