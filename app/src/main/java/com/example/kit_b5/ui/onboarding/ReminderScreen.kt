@@ -11,12 +11,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun ReminderScreen(viewModel: ReminderViewModel) {
+fun ReminderScreen(viewModel: ReminderViewModel, editing: Boolean = false, onSaved: () -> Unit = {}, onCancel: () -> Unit = {}) {
     val settings = viewModel.settings
     val context = LocalContext.current
     OnboardingFrame(2) {
         Spacer(Modifier.height(12.dp))
-        Text("STEP 2", color = Purple, letterSpacing = 3.sp)
+        Text(if (editing) "リマインド設定" else "STEP 2", color = Purple, letterSpacing = 3.sp)
         Text("${viewModel.nickname}さん、\nときどきお知らせしますね",
             fontSize = 25.sp, fontWeight = FontWeight.Bold)
         Text("気持ちは時間とともに変わるもの。定期的に振り返るきっかけをお届けします。")
@@ -76,8 +76,14 @@ fun ReminderScreen(viewModel: ReminderViewModel) {
         }
         viewModel.error?.let { Text(it, color = MaterialTheme.colorScheme.error) }
         Spacer(Modifier.weight(1f).heightIn(min = 16.dp))
-        PrimaryAction("この設定で始める", !viewModel.saving) { viewModel.finish(true) }
-        OutlinedButton(onClick = { viewModel.finish(false) }, enabled = !viewModel.saving,
-            modifier = Modifier.fillMaxWidth()) { Text("リマインドなしではじめる") }
+        if (viewModel.loading) CircularProgressIndicator()
+        PrimaryAction(if (editing) "変更を保存" else "この設定で始める",
+            !viewModel.saving && !viewModel.loading && (!editing || viewModel.error == null)) {
+            viewModel.finish(true, onSaved)
+        }
+        OutlinedButton(onClick = { if (editing) onCancel() else viewModel.finish(false) },
+            enabled = !viewModel.saving, modifier = Modifier.fillMaxWidth()) {
+            Text(if (editing) "キャンセル" else "リマインドなしではじめる")
+        }
     }
 }
