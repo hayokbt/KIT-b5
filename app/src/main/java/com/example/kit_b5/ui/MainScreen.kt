@@ -40,7 +40,7 @@ fun MainScreen(viewModel: SavedInformationViewModel, repository: com.example.kit
                     AppTab.Home -> HomeScreen(viewModel, onEditReminder = { editingReminder = true }, onNavigate = { selected = it })
                     AppTab.Tips -> TipsScreen()
                     AppTab.Guide -> GuideScreen()
-                    AppTab.Simulation -> SimulationScreen()
+                    AppTab.Quiz -> QuizScreen()
                     AppTab.Profile -> ProfileScreen()
                 }
             }

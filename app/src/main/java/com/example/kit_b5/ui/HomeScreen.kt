@@ -70,7 +70,7 @@ fun HomeScreen(viewModel: SavedInformationViewModel, onEditReminder: () -> Unit,
                         Column(Modifier.weight(1f)) {
                             Text("○ リマインド\n○ 写真の振り返り\n○ 希望を書く", color = Color.White.copy(alpha = .8f), fontSize = 12.sp, lineHeight = 23.sp)
                         }
-                        Text("○ 人生体験\n○ 大切なこと 0/3\n○ 希望を伝える", color = Color.White.copy(alpha = .8f), fontSize = 12.sp, lineHeight = 23.sp)
+                        Text("○ クイズ\n○ 大切なこと 0/3\n○ 希望を伝える", color = Color.White.copy(alpha = .8f), fontSize = 12.sp, lineHeight = 23.sp)
                     }
                     Surface(color = Color.White.copy(alpha = .2f), shape = RoundedCornerShape(18.dp)) {
                         Text("次の一歩：リマインドを設定する　 ›", color = Color.White,
@@ -85,8 +85,8 @@ fun HomeScreen(viewModel: SavedInformationViewModel, onEditReminder: () -> Unit,
             }
             HomeTile("▥", "話し合いのコツ・1分で読める", "医療者にも話してよい", "かかりつけ医・看護師も大切な相手", Color(0xFFECF8F2), onClick = { onNavigate(AppTab.Tips) })
             Text("今日できること", color = HomeInk, fontWeight = FontWeight.Bold)
-            HomeTile("⌛", "LIFE SIMULATION", "もしもの一生を生きてみる", "進路も結婚も自分で選び、30代から人生会議を重ねる",
-                Color(0xFF626590), light = true, onClick = { onNavigate(AppTab.Simulation) })
+            HomeTile("?", "ACP QUIZ", "クイズで人生会議を学ぼう", "問題に答えながら、医療・ケアや人生会議の知識を深める",
+                Color(0xFF626590), light = true, onClick = { onNavigate(AppTab.Quiz) })
             HomeTile("▧", "MEMORY ALBUM", "大切な人との写真を残す", "端末の中だけに保存されます", Color.White, onClick = { onNavigate(AppTab.Profile) })
             Spacer(Modifier.height(8.dp))
         }
