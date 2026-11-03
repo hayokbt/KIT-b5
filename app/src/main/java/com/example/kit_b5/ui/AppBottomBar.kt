@@ -14,7 +14,7 @@ import androidx.compose.ui.unit.sp
 
 enum class AppTab(val label: String, val symbol: String) {
     Home("ホーム", "⌂"), Tips("Tips", "♧"), Guide("ガイド", "▤"),
-    Simulation("人生体験", "⌛"), Profile("わたし", "♙")
+    Quiz("クイズ", "?"), Profile("わたし", "♙")
 }
 
 @Composable
