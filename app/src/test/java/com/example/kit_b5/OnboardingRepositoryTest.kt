@@ -35,6 +35,28 @@ class OnboardingRepositoryTest {
         assertEquals(settings, repository.reminder.first())
     }
 
+    @Test fun settingsUpdateProfileAndReminderWithoutResettingCompletion() = withRepository { repository ->
+        repository.complete(ReminderSettings())
+        val profile = Profile("  新しい名前  ", 1985, "その他")
+        val reminder = ReminderSettings(false, "毎月", 3, 21, 8, 45)
+        repository.saveSettings(profile, reminder)
+        assertEquals(UserSettings(profile.copy(nickname = "新しい名前"), reminder), repository.settings.first())
+        assertTrue(repository.completed.first())
+        repository.saveSettings(Profile("新しい名前"), reminder.copy(enabled = true))
+        assertEquals(Profile("新しい名前"), repository.profile.first())
+    }
+
+    @Test fun blankNicknameRejectsEntireSettingsUpdate() = withRepository { repository ->
+        repository.saveProfile(Profile("元の名前"))
+        val before = repository.settings.first()
+        try {
+            repository.saveSettings(Profile("   "), ReminderSettings())
+            fail("Blank nickname must be rejected")
+        } catch (_: IllegalArgumentException) { }
+        assertEquals(before, repository.settings.first())
+        assertFalse(repository.completed.first())
+    }
+
     @Test fun skipDoesNotSaveReminderButCompletesOnboarding() = withRepository { repository ->
         repository.saveProfile(Profile("あおい"))
         repository.complete(null)

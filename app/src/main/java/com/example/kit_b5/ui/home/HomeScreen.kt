@@ -1,6 +1,7 @@
 package com.example.kit_b5.ui.home
 
 import com.example.kit_b5.ui.bottombar.AppTab
+import com.example.kit_b5.ui.settings.SettingsAvatar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -23,7 +24,7 @@ private val HomeInk = Color(0xFF172B4D)
 private val HomePurple = Color(0xFF826AD2)
 
 @Composable
-fun HomeScreen(viewModel: SavedInformationViewModel, onEditReminder: () -> Unit, onNavigate: (AppTab) -> Unit) {
+fun HomeScreen(viewModel: SavedInformationViewModel, onEditReminder: () -> Unit, onNavigate: (AppTab) -> Unit, onOpenSettings: () -> Unit) {
     val state by viewModel.state.collectAsState()
     val nickname = state.profile.nickname.ifBlank { "あなた" }
     val background = Brush.linearGradient(listOf(Color(0xFFECE5FF), Color(0xFFFFEEE1), Color(0xFFF7F7FC)))
@@ -34,11 +35,7 @@ fun HomeScreen(viewModel: SavedInformationViewModel, onEditReminder: () -> Unit,
                 Text("GOOD EVENING", color = Color(0xFF71809A), fontSize = 12.sp, letterSpacing = 3.sp)
                 Text("こんにちは、${nickname}さん", color = HomeInk, fontSize = 23.sp, fontWeight = FontWeight.Bold)
             }
-            Box(Modifier.size(48.dp).background(Brush.linearGradient(listOf(Color(0xFFF7C7A6), Color(0xFFD99371))),
-                RoundedCornerShape(18.dp)).border(2.dp, Color.White, RoundedCornerShape(18.dp)),
-                contentAlignment = Alignment.Center) {
-                Text(nickname.take(1), color = Color.White, fontWeight = FontWeight.Bold)
-            }
+            SettingsAvatar(nickname = nickname, onClick = onOpenSettings)
         }
         Column(Modifier.weight(1f).verticalScroll(rememberScrollState()).padding(horizontal = 24.dp),
             verticalArrangement = Arrangement.spacedBy(20.dp)) {

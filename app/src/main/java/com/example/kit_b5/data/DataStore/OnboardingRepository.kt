@@ -14,6 +14,8 @@ data class ReminderSettings(
     val minute: Int = 0
 )
 
+data class UserSettings(val profile: Profile, val reminder: ReminderSettings?)
+
 class OnboardingRepository(private val store: DataStore<Preferences>) {
     private object Keys {
         val completed = booleanPreferencesKey("completed")
@@ -28,19 +30,35 @@ class OnboardingRepository(private val store: DataStore<Preferences>) {
         val minute = intPreferencesKey("reminder_minute")
     }
     val completed = store.data.map { it[Keys.completed] ?: false }
-    val profile = store.data.map {
-        Profile(it[Keys.nickname] ?: "", it[Keys.year], it[Keys.gender])
-    }
-
-    val reminder = store.data.map {
-        if (it[Keys.enabled] == null) null else ReminderSettings(
-            enabled = it[Keys.enabled] ?: false,
-            frequency = it[Keys.frequency] ?: "毎週",
-            day = it[Keys.day] ?: 0,
-            monthDay = it[Keys.monthDay] ?: 1,
-            hour = it[Keys.hour] ?: 19,
-            minute = it[Keys.minute] ?: 0
+    val settings = store.data.map {
+        UserSettings(
+            profile = Profile(it[Keys.nickname] ?: "", it[Keys.year], it[Keys.gender]),
+            reminder = if (it[Keys.enabled] == null) null else ReminderSettings(
+                enabled = it[Keys.enabled] ?: false,
+                frequency = it[Keys.frequency] ?: "毎週",
+                day = it[Keys.day] ?: 0,
+                monthDay = it[Keys.monthDay] ?: 1,
+                hour = it[Keys.hour] ?: 19,
+                minute = it[Keys.minute] ?: 0
+            )
         )
+    }
+    val profile = settings.map { it.profile }
+    val reminder = settings.map { it.reminder }
+
+    suspend fun saveSettings(profile: Profile, reminder: ReminderSettings) {
+        require(profile.nickname.isNotBlank())
+        store.edit {
+            it[Keys.nickname] = profile.nickname.trim()
+            profile.birthYear?.let { year -> it[Keys.year] = year } ?: it.remove(Keys.year)
+            profile.gender?.let { gender -> it[Keys.gender] = gender } ?: it.remove(Keys.gender)
+            it[Keys.enabled] = reminder.enabled
+            it[Keys.frequency] = reminder.frequency
+            it[Keys.day] = reminder.day
+            it[Keys.monthDay] = reminder.monthDay
+            it[Keys.hour] = reminder.hour
+            it[Keys.minute] = reminder.minute
+        }
     }
 
     suspend fun saveProfile(profile: Profile) {

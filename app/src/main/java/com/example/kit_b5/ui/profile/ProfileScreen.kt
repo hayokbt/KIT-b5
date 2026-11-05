@@ -1,5 +1,6 @@
 package com.example.kit_b5.ui.profile
 
+import com.example.kit_b5.ui.settings.SettingsAvatar
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -34,7 +35,7 @@ private val ProfileInk = Color(0xFF172B4D)
 private val ProfilePurple = Color(0xFF8369D6)
 
 @Composable
-fun ProfileScreen(nickname: String = "", viewModel: ProfileViewModel = viewModel()) {
+fun ProfileScreen(nickname: String = "", viewModel: ProfileViewModel = viewModel(), onOpenSettings: () -> Unit = {}) {
     var showWish by rememberSaveable { mutableStateOf(false) }
     if (showWish) {
         androidx.activity.compose.BackHandler { showWish = false }
@@ -65,12 +66,7 @@ fun ProfileScreen(nickname: String = "", viewModel: ProfileViewModel = viewModel
                     letterSpacing = 2.sp, fontWeight = FontWeight.Bold)
                 Text("わたしのこと", color = ProfileInk, fontSize = 25.sp, fontWeight = FontWeight.Bold)
             }
-            Surface(color = Color(0xFFE7AC8A), shape = RoundedCornerShape(18.dp),
-                border = BorderStroke(2.dp, Color.White), shadowElevation = 6.dp) {
-                Box(Modifier.size(48.dp), contentAlignment = Alignment.Center) {
-                    Text(nickname.take(1).ifEmpty { "わ" }, color = Color.White, fontWeight = FontWeight.Bold)
-                }
-            }
+            SettingsAvatar(nickname = nickname, onClick = onOpenSettings)
         }
         LazyColumn(Modifier.weight(1f), contentPadding = PaddingValues(start = 24.dp, end = 24.dp, bottom = 24.dp),
             verticalArrangement = Arrangement.spacedBy(16.dp)) {
