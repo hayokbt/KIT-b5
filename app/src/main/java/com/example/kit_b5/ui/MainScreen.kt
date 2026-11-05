@@ -41,7 +41,7 @@ fun MainScreen(viewModel: SavedInformationViewModel, repository: com.example.kit
                     AppTab.Tips -> TipsScreen()
                     AppTab.Guide -> GuideScreen()
                     AppTab.Quiz -> QuizScreen()
-                    AppTab.Profile -> ProfileScreen()
+                    AppTab.Profile -> ProfileScreen(nickname = viewModel.state.collectAsState().value.profile.nickname)
                 }
             }
         }
