@@ -1,4 +1,4 @@
-package com.example.kit_b5.ui
+package com.example.kit_b5.ui.tips
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background

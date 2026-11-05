@@ -1,4 +1,6 @@
-package com.example.kit_b5.ui
+package com.example.kit_b5.ui.guide
+
+import com.example.kit_b5.ui.bottombar.AppTab
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

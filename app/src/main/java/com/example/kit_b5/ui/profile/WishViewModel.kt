@@ -1,4 +1,4 @@
-package com.example.kit_b5.ui
+package com.example.kit_b5.ui.profile
 
 import android.app.Application
 import androidx.compose.runtime.*

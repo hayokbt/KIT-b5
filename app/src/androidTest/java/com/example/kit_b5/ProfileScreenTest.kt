@@ -4,7 +4,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.test.ext.junit.runners.AndroidJUnit4
-import com.example.kit_b5.ui.ProfileScreen
+import com.example.kit_b5.ui.profile.ProfileScreen
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith

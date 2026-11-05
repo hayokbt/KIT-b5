@@ -1,4 +1,4 @@
-package com.example.kit_b5.ui
+package com.example.kit_b5.ui.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

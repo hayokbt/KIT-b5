@@ -1,4 +1,6 @@
-package com.example.kit_b5.ui
+package com.example.kit_b5.ui.home
+
+import com.example.kit_b5.ui.bottombar.AppTab
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border

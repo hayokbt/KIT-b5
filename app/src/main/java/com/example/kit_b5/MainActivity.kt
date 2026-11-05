@@ -17,7 +17,7 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.example.kit_b5.data.DataStore.*
 import com.example.kit_b5.ui.onboarding.*
 import com.example.kit_b5.ui.MainScreen
-import com.example.kit_b5.ui.SavedInformationViewModel
+import com.example.kit_b5.ui.home.SavedInformationViewModel
 import com.example.kit_b5.ui.theme.KITB5Theme
 
 class MainActivity : ComponentActivity() {

@@ -1,4 +1,4 @@
-package com.example.kit_b5.ui
+package com.example.kit_b5.ui.quiz
 
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf

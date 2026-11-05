@@ -1,4 +1,4 @@
-package com.example.kit_b5.ui
+package com.example.kit_b5.ui.profile
 
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest

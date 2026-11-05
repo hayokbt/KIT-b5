@@ -2,7 +2,7 @@ package com.example.kit_b5
 
 import androidx.lifecycle.SavedStateHandle
 import com.example.kit_b5.data.quiz.*
-import com.example.kit_b5.ui.QuizViewModel
+import com.example.kit_b5.ui.quiz.QuizViewModel
 import org.junit.Assert.*
 import org.junit.Test
 

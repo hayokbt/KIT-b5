@@ -1,4 +1,4 @@
-package com.example.kit_b5.ui
+package com.example.kit_b5.ui.profile
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.layout.*

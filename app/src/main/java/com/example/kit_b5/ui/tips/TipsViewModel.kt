@@ -1,4 +1,4 @@
-package com.example.kit_b5.ui
+package com.example.kit_b5.ui.tips
 
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel

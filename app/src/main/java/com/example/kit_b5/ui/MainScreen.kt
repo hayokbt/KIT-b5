@@ -1,5 +1,14 @@
 package com.example.kit_b5.ui
 
+import com.example.kit_b5.ui.bottombar.AppBottomBar
+import com.example.kit_b5.ui.bottombar.AppTab
+import com.example.kit_b5.ui.home.HomeScreen
+import com.example.kit_b5.ui.home.SavedInformationViewModel
+import com.example.kit_b5.ui.guide.GuideScreen
+import com.example.kit_b5.ui.profile.ProfileScreen
+import com.example.kit_b5.ui.quiz.QuizScreen
+import com.example.kit_b5.ui.tips.TipsScreen
+
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*

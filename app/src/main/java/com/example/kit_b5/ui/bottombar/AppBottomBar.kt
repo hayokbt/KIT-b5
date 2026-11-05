@@ -1,4 +1,4 @@
-package com.example.kit_b5.ui
+package com.example.kit_b5.ui.bottombar
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
